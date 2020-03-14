@@ -1,0 +1,26 @@
+{
+  "name": "mj-util",
+  "version": "0.0.4",
+  "description": "mj reuse util methods",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesmj-tech/mj-util.git"
+  },
+  "keywords": [
+    "mj",
+    "util"
+  ],
+  "author": "jamesmj.tech@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesmj-tech/mj-util/issues"
+  },
+  "homepage": "https://github.com/jamesmj-tech/mj-util#readme",
+  "files": [
+    "src/*"
+  ]
+}
