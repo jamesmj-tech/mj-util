@@ -47,6 +47,30 @@ export function find(list = [], criteria = {}, ignoreDataType, ignoreCase) {
 };
 
 /**
+ * Return list of object if result is match with criteria else return []
+ * @param list
+ * @param criteria => {fieldName1: fieldValue1, fieldName2: fieldValue2, ...}
+ * @return {*}
+ */
+export function findAll(list = [], criteria = {}, ignoreDataType) {
+    const result = [];
+    list.forEach(item => {
+        Object.keys(criteria).every((criteriaKey) => {
+            let listValue = item[criteriaKey];
+            let criteriaValue = criteria[criteriaKey];
+            if (ignoreDataType && listValue && criteriaValue) {
+                listValue = listValue.toString();
+                criteriaValue = criteriaValue.toString();
+            }
+            if (listValue === criteriaValue) {
+                result.push(item);
+            }
+        });
+    });
+    return result;
+};
+
+/**
  * Return sorted list
  * @param list
  * @param sortByList = [{name: fieldName, sortBy: 'asc/desc'}]
@@ -55,9 +79,19 @@ export function find(list = [], criteria = {}, ignoreDataType, ignoreCase) {
 export function orderBy(list = [], sortByList = []) {
     const sortedList = Object.assign([], list);
     for (let i = sortByList.length-1; i > -1 ; i--) {
+        const options = sortByList[i].options || {};
         sortedList.sort((a, b) => {
-            const valueA = a[sortByList[i].name].toString().toUpperCase();
-            const valueB = b[sortByList[i].name].toString().toUpperCase();
+            let valueA = '';
+            let valueB = '';
+            if (options.type === 'list') {
+                const aId = a[sortByList[i].name].id;
+                const bId = b[sortByList[i].name].id;
+                valueA = find(options.list, {id: aId}).displayName.toString().toUpperCase();
+                valueB = find(options.list, {id: bId}).displayName.toString().toUpperCase();
+            } else {
+                valueA = a[sortByList[i].name].toString().toUpperCase();
+                valueB = b[sortByList[i].name].toString().toUpperCase();
+            }
             const ascValue = sortByList[i].sortBy === 'asc' ? [-1, 1] : [1, -1];
             if (valueA < valueB) {
                 return ascValue[0];
