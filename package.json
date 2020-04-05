@@ -1,6 +1,6 @@
 {
   "name": "mj-util",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "mj reuse util methods",
   "main": "index.js",
   "scripts": {

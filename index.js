@@ -86,8 +86,8 @@ export function orderBy(list = [], sortByList = []) {
             if (options.type === 'list') {
                 const aId = a[sortByList[i].name].id;
                 const bId = b[sortByList[i].name].id;
-                valueA = find(options.list, {id: aId}).displayName.toString().toUpperCase();
-                valueB = find(options.list, {id: bId}).displayName.toString().toUpperCase();
+                valueA = find(options.list, {id: aId}).name.toString().toUpperCase();
+                valueB = find(options.list, {id: bId}).name.toString().toUpperCase();
             } else {
                 valueA = a[sortByList[i].name].toString().toUpperCase();
                 valueB = b[sortByList[i].name].toString().toUpperCase();
